@@ -1,6 +1,6 @@
 package org.fastcampus.post.domain.content;
 
-import org.fastcampus.post.common.DatetimeInfo;
+import org.fastcampus.post.domain.common.DatetimeInfo;
 
 public abstract class Content {
     String contentText;
