@@ -1,0 +1,30 @@
+package org.skymoon7337.post.application;
+
+import org.skymoon7337.fake.FakeObjectFactory;
+import org.skymoon7337.post.application.dto.CreateCommentRequestDto;
+import org.skymoon7337.post.application.dto.CreatePostRequestDto;
+import org.skymoon7337.post.domain.Post;
+import org.skymoon7337.post.domain.PostPublicationState;
+import org.skymoon7337.user.application.UserService;
+import org.skymoon7337.user.application.dto.CreateUserRequestDto;
+import org.skymoon7337.user.domain.User;
+
+public class PostApplicationTestTemplate {
+
+
+    final UserService userService = FakeObjectFactory.getUserService();
+    final PostService postService = FakeObjectFactory.getPostService();
+    final CommentService commentService = FakeObjectFactory.getCommentService();
+
+
+    final User user = userService.createUser(new CreateUserRequestDto("user1", null));
+    final User otherUser = userService.createUser(new CreateUserRequestDto("user1", null));
+
+    final String commentContentText = "test comment";
+
+    final CreatePostRequestDto postRequestDto = new CreatePostRequestDto(user.getId(), commentContentText, PostPublicationState.PUBLIC);
+    final Post post = postService.createPost(postRequestDto);
+
+    CreateCommentRequestDto commentRequestDto = new CreateCommentRequestDto(post.getId(), user.getId(), commentContentText);
+
+}
