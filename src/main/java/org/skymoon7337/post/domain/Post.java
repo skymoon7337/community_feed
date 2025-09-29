@@ -1,10 +1,16 @@
 package org.skymoon7337.post.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 import org.skymoon7337.common.domain.PositiveIntegerCounter;
 import org.skymoon7337.post.domain.content.Content;
 import org.skymoon7337.post.domain.content.PostContent;
 import org.skymoon7337.user.domain.User;
 
+@Getter
+@Builder
+@AllArgsConstructor
 public class Post {
 
     private final Long id; //PostId
@@ -64,19 +70,8 @@ public class Post {
         return content.getContentText();
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public User getAuthor() {
-        return author;
-    }
-
     public Content getContentObject() {
         return content;
     }
-
-    public PostPublicationState getState() {
-        return state;
-    }
+    
 }

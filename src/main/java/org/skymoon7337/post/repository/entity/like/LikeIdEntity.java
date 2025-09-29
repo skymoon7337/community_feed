@@ -1,4 +1,4 @@
-package org.skymoon7337.user.repository.entity;
+package org.skymoon7337.post.repository.entity.like;
 
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
-// 이건 데이터 저장 안 함! 그냥 검색용 도구
-public class UserRelationIdEntity {
-    private Long followingUserId;
-    private Long followerUserId;
+public class LikeIdEntity {
+    private Long targetId;
+    private Long userId;
+    private String targetType;
 }

@@ -1,11 +1,15 @@
 package org.skymoon7337.post.domain.comment;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import org.skymoon7337.common.domain.PositiveIntegerCounter;
 import org.skymoon7337.post.domain.Post;
 import org.skymoon7337.post.domain.content.CommentContent;
 import org.skymoon7337.post.domain.content.Content;
 import org.skymoon7337.user.domain.User;
 
+@Builder
+@AllArgsConstructor
 public class Comment {
 
     private final Long id;
