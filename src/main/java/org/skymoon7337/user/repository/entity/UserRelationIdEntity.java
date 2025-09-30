@@ -9,8 +9,11 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
-// 이건 데이터 저장 안 함! 그냥 검색용 도구
+//상태 2가지 : 팔로잉을 하는 유저, 팔로잉을 당하는 유저
+// -> 팔로잉을 당하는 Userid 를 검색후 목록조회 = 이 유저를 팔로우 하는 userId 리스트
 public class UserRelationIdEntity {
+    //팔로잉을 하는 유저의 아이디
     private Long followingUserId;
+    //팔로잉을 당하는 유저의 아이디
     private Long followerUserId;
 }

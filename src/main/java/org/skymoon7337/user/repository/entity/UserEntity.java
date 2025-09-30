@@ -8,6 +8,7 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicUpdate;
 import org.skymoon7337.common.domain.PositiveIntegerCounter;
 import org.skymoon7337.common.repository.entity.TimeBaseEntity;
 import org.skymoon7337.user.domain.User;
@@ -18,6 +19,7 @@ import org.skymoon7337.user.domain.UserInfo;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@DynamicUpdate //변경된 값들만 업데이트 (효율적)
 public class UserEntity extends TimeBaseEntity {
 
     @Id

@@ -18,9 +18,9 @@ import org.skymoon7337.common.repository.entity.TimeBaseEntity;
 public class UserRelationEntity extends TimeBaseEntity {
 
     @Id
-    private Long followingUserId;
+    private Long followingUserId; //팔로잉을 하는 유저의 id
 
     @Id
-    private Long followerUserId;
+    private Long followerUserId; //팔로우를 당하는 유저의 id
 
 }
