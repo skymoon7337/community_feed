@@ -23,6 +23,7 @@ public class UserRelationRepositoryImpl implements UserRelationRepository {
     @Override
     public boolean isAlreadyFollow(User user, User targetUser) {
         UserRelationIdEntity id = new UserRelationIdEntity(user.getId(), targetUser.getId());
+        //JpaUserRelationRepository 덕분에 existsById에 복합키를 넘길수 있음
         return jpaUserRelationRepository.existsById(id);
     }
 

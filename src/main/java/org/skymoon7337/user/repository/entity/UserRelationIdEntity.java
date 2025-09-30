@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-@Embeddable
+@Embeddable //다른 엔티티에 포함될 수 있는 클래스, 독립적인 테이블이 아님. 다른 엔티티의 일부분으로 사용됨. 복합키를 표현하거나, 반복되는 필드를 그룹화할 때 사용
 @EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor

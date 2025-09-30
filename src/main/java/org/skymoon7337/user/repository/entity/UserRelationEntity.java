@@ -14,7 +14,7 @@ import org.skymoon7337.common.repository.entity.TimeBaseEntity;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@IdClass(UserRelationIdEntity.class)
+@IdClass(UserRelationIdEntity.class) //  ID가 2개(이상)다. 그 2개를 묶어서 표현하는 클래스가 UserRelationIdEntity이다.
 public class UserRelationEntity extends TimeBaseEntity {
 
     @Id
