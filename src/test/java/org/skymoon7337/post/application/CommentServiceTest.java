@@ -12,7 +12,7 @@ class CommentServiceTest extends PostApplicationTestTemplate {
     @Test
     void givenCreateCommentRequestDto_whenCreateComment_thenReturnComment() {
         //when
-        Comment comment = commentService.creatComment(commentRequestDto);
+        Comment comment = commentService.createComment(commentRequestDto);
 
         //then
         String content = comment.getContent();
@@ -22,12 +22,12 @@ class CommentServiceTest extends PostApplicationTestTemplate {
     @Test
     void givenCreatedComment_whenUpdateComment_thenReturnUpdatedComment() {
         //given
-        Comment comment = commentService.creatComment(commentRequestDto);
+        Comment comment = commentService.createComment(commentRequestDto);
 
         //when
         String updatedContent = "updated comment";
-        UpdateCommentRequestDto updateRequestDto = new UpdateCommentRequestDto(post.getId(), user.getId(), updatedContent);
-        Comment updatedComment = commentService.updateComment(updateRequestDto);
+        UpdateCommentRequestDto updateRequestDto = new UpdateCommentRequestDto(user.getId(), updatedContent);
+        Comment updatedComment = commentService.updateComment(comment.getId(), updateRequestDto);
 
         //then
         assertEquals(comment.getId(), updatedComment.getId());
@@ -38,7 +38,7 @@ class CommentServiceTest extends PostApplicationTestTemplate {
     @Test
     void givenCreatedComment_whenLikeComment_thenReturnCommentWithLike() {
         //given
-        Comment comment = commentService.creatComment(commentRequestDto);
+        Comment comment = commentService.createComment(commentRequestDto);
 
         //when
         LikeRequestDto likeRequestDto = new LikeRequestDto(comment.getId(), otherUser.getId());
@@ -51,12 +51,12 @@ class CommentServiceTest extends PostApplicationTestTemplate {
     @Test
     void givenCreatedComment_whenUnlikeComment_thenReturnCommentWithNoLike() {
         //given
-        Comment comment = commentService.creatComment(commentRequestDto);
+        Comment comment = commentService.createComment(commentRequestDto);
 
         //when
         LikeRequestDto likeRequestDto = new LikeRequestDto(comment.getId(), otherUser.getId());
         commentService.likeComment(likeRequestDto);
-        commentService.unLikeComment(likeRequestDto);
+        commentService.unlikeComment(likeRequestDto);
 
         //then
         assertEquals(0, comment.getLikeCount());

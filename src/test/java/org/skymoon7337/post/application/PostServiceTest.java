@@ -2,7 +2,9 @@ package org.skymoon7337.post.application;
 
 import org.junit.jupiter.api.Test;
 import org.skymoon7337.post.application.dto.LikeRequestDto;
+import org.skymoon7337.post.application.dto.UpdatePostRequestDto;
 import org.skymoon7337.post.domain.Post;
+import org.skymoon7337.post.domain.PostPublicationState;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -25,7 +27,8 @@ class PostServiceTest extends PostApplicationTestTemplate {
         Post savedPost = postService.createPost(postRequestDto);
 
         //when
-        Post updatedPost = postService.updatePost(savedPost.getId(), postRequestDto);
+        UpdatePostRequestDto updatePostRequestDto = new UpdatePostRequestDto(user.getId(), "this is test", PostPublicationState.PUBLIC);
+        Post updatedPost = postService.updatePost(savedPost.getId(), updatePostRequestDto);
 
         //then
         assertEquals(savedPost.getId(), updatedPost.getId());
@@ -69,7 +72,7 @@ class PostServiceTest extends PostApplicationTestTemplate {
         postService.likePost(likeRequestDto);
 
         //when
-        postService.unLikePost(likeRequestDto);
+        postService.unlikePost(likeRequestDto);
 
         //then
         assertEquals(0, savedPost.getLikeCount());
@@ -80,10 +83,10 @@ class PostServiceTest extends PostApplicationTestTemplate {
         //given
         Post savedPost = postService.createPost(postRequestDto);
         LikeRequestDto likeRequestDto = new LikeRequestDto(savedPost.getId(), otherUser.getId());
-        postService.unLikePost(likeRequestDto);
+        postService.unlikePost(likeRequestDto);
 
         //when
-        postService.unLikePost(likeRequestDto);
+        postService.unlikePost(likeRequestDto);
 
         //then
         assertEquals(0, savedPost.getLikeCount());

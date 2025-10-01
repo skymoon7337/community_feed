@@ -11,6 +11,7 @@ import org.skymoon7337.user.domain.User;
 @Getter
 @Builder
 @AllArgsConstructor
+//@Entity
 public class Post {
 
     private final Long id; //PostId
@@ -73,5 +74,5 @@ public class Post {
     public Content getContentObject() {
         return content;
     }
-    
+
 }

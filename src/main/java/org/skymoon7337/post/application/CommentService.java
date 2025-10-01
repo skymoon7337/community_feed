@@ -9,7 +9,9 @@ import org.skymoon7337.post.domain.Post;
 import org.skymoon7337.post.domain.comment.Comment;
 import org.skymoon7337.user.application.UserService;
 import org.skymoon7337.user.domain.User;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CommentService {
     private final UserService userService;
     private final PostService postService;
@@ -24,10 +26,10 @@ public class CommentService {
     }
 
     public Comment getComment(Long id) {
-        return commentRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+        return commentRepository.findById(id);
     }
 
-    public Comment creatComment(CreateCommentRequestDto dto) {
+    public Comment createComment(CreateCommentRequestDto dto) {
         Post post = postService.getPost(dto.postId());
         User user = userService.getUser(dto.userId());
 
@@ -35,8 +37,8 @@ public class CommentService {
         return commentRepository.save(comment);
     }
 
-    public Comment updateComment(UpdateCommentRequestDto dto) {
-        Comment comment = getComment(dto.commentId());
+    public Comment updateComment(Long commentId, UpdateCommentRequestDto dto) {
+        Comment comment = getComment(commentId);
         User user = userService.getUser(dto.userId());
 
         comment.updateComment(user, dto.content());
@@ -55,13 +57,14 @@ public class CommentService {
         likeRepository.like(comment, user);
     }
 
-    public void unLikeComment(LikeRequestDto dto) {
+    public void unlikeComment(LikeRequestDto dto) {
         Comment comment = getComment(dto.targetId());
         User user = userService.getUser(dto.userId());
 
         if (likeRepository.checkLike(comment, user)) {
             comment.unLike();
-            likeRepository.unLike(comment, user);
+            likeRepository.unlike(comment, user);
         }
     }
 }
+

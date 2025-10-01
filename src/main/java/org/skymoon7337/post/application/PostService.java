@@ -2,12 +2,15 @@ package org.skymoon7337.post.application;
 
 import org.skymoon7337.post.application.dto.CreatePostRequestDto;
 import org.skymoon7337.post.application.dto.LikeRequestDto;
+import org.skymoon7337.post.application.dto.UpdatePostRequestDto;
 import org.skymoon7337.post.application.interfaces.LikeRepository;
 import org.skymoon7337.post.application.interfaces.PostRepository;
 import org.skymoon7337.post.domain.Post;
 import org.skymoon7337.user.application.UserService;
 import org.skymoon7337.user.domain.User;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PostService {
 
     private final UserService userService;
@@ -21,7 +24,7 @@ public class PostService {
     }
 
     public Post getPost(Long id) {
-        return postRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Post not found"));
+        return postRepository.findById(id);
     }
 
     public Post createPost(CreatePostRequestDto dto) {
@@ -30,14 +33,18 @@ public class PostService {
         return postRepository.save(post);
     }
 
-
-    public Post updatePost(Long id, CreatePostRequestDto dto) {
-        Post post = getPost(id);
+    //영속성 컨텍스트 없어서
+    //2번 조회(SELECT) -> PostRepositoryImpl의 save에서 문제
+    public Post updatePost(Long postId, UpdatePostRequestDto dto) {
+        Post post = getPost(postId);
         User user = userService.getUser(dto.userId());
         post.updatePost(user, dto.content(), dto.state());
         return postRepository.save(post);
     }
 
+    //RepositoryImpl에 하는거 대신, Post에 @Entity, 여기에 @Transactional로 구현시
+    // 장점: 간단함, 매번 쿼리문 작성 안해도 됨.
+    // 단점: 기능이나 DB 변경시 Service,Domain등의 코드 변경해야됨.(ex: 동시성 문제)
     public void likePost(LikeRequestDto dto) {
         Post post = getPost(dto.targetId());
         User user = userService.getUser(dto.userId());
@@ -50,13 +57,13 @@ public class PostService {
         likeRepository.like(post, user);
     }
 
-    public void unLikePost(LikeRequestDto dto) {
+    public void unlikePost(LikeRequestDto dto) {
         Post post = getPost(dto.targetId());
         User user = userService.getUser(dto.userId());
 
         if (likeRepository.checkLike(post, user)) {
             post.unlike();
-            likeRepository.unLike(post, user);
+            likeRepository.unlike(post, user);
         }
     }
 }

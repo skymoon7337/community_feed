@@ -34,7 +34,7 @@ public class FakeLikeRepository implements LikeRepository {
     }
 
     @Override
-    public void unLike(Post post, User user) {
+    public void unlike(Post post, User user) {
         Set<User> users = postLikes.get(post);
         if (users == null) {
             return;
@@ -63,7 +63,7 @@ public class FakeLikeRepository implements LikeRepository {
     }
 
     @Override
-    public void unLike(Comment comment, User user) {
+    public void unlike(Comment comment, User user) {
         Set<User> users = commentLikes.get(comment);
         if (users == null) {
             return;
