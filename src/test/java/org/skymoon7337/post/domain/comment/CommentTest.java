@@ -1,5 +1,6 @@
 package org.skymoon7337.post.domain.comment;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.skymoon7337.post.domain.Post;
 import org.skymoon7337.post.domain.content.CommentContent;
@@ -20,6 +21,7 @@ class CommentTest {
     private final Comment comment = new Comment(1L, post, user, new CommentContent("content"));
 
     @Test
+    @DisplayName("댓글에 좋아요를 누르면 좋아요 수가 증가한다")
     void givenComment_whenLike_thenIncreaseLikeCount() {
         //when
         comment.like(otherUser);
@@ -28,6 +30,7 @@ class CommentTest {
     }
 
     @Test
+    @DisplayName("댓글에 좋아요를 취소하면 좋아요 수가 감소한다")
     void givenComment_whenUnLike_thenDecreaseLikeCount() {
         //given
         comment.like(otherUser);
@@ -38,12 +41,14 @@ class CommentTest {
     }
 
     @Test
+    @DisplayName("자신의 댓글에 좋아요를 누르면 예외가 발생한다")
     void givenComment_whenLikeBySelf_thenThrowException() {
         //when, then
         assertThrows(IllegalArgumentException.class, () -> comment.like(user));
     }
 
     @Test
+    @DisplayName("좋아요가 눌린 댓글에 좋아요를 취소하면 좋아요 수는 0이 된다")
     void givenCommentAndLike_whenUnLike_thenLikeCountIsZero() {
         //given
         comment.like(otherUser);
@@ -54,6 +59,7 @@ class CommentTest {
     }
 
     @Test
+    @DisplayName("댓글 내용을 수정하면 내용이 수정되어야 한다")
     void givenComment_whenUpdateContent_thenContentShouldBeUpdated() {
         //given
         String newCommentContent = "new content";
@@ -64,6 +70,7 @@ class CommentTest {
     }
 
     @Test
+    @DisplayName("다른 사용자가 댓글 내용을 수정하려고 하면 예외가 발생한다")
     void givenComment_whenUpdateContentByOtherUser_thenThrowException() {
         //given
         String newCommentContent = "new content";
@@ -72,6 +79,7 @@ class CommentTest {
     }
 
     @Test
+    @DisplayName("댓글 내용이 글자수 제한을 초과하면 예외가 발생한다")
     void givenComment_whenUpdateContentOver_thenThrowException() {
         //given
         String newCommentContent = "a".repeat(101);

@@ -1,5 +1,6 @@
 package org.skymoon7337.user.domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -12,6 +13,7 @@ class UserInfoTest {
     // then
 
     @Test
+    @DisplayName("이름과 프로필 이미지가 주어지면 유저 정보가 생성된다")
     void givenNameAndProfileImage_whenCreated_thenThrowNothing() {
 
         // given
@@ -24,6 +26,7 @@ class UserInfoTest {
     }
 
     @Test
+    @DisplayName("이름이 비어있으면 유저 정보 생성 시 예외가 발생한다")
     void givenBlankNameAndProfileImage_whenCreated_thenThrowError() {
 
         // given

@@ -1,5 +1,6 @@
 package org.skymoon7337.post.application;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.skymoon7337.post.application.dto.LikeRequestDto;
 import org.skymoon7337.post.application.dto.UpdatePostRequestDto;
@@ -12,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class PostServiceTest extends PostApplicationTestTemplate {
 
     @Test
+    @DisplayName("게시글 생성 요청이 주어지면 게시글을 생성하고 반환한다")
     void givenPostRequestDto_whenCreate_thenReturnPost() {
         //when
         Post savedPost = postService.createPost(postRequestDto);
@@ -22,6 +24,7 @@ class PostServiceTest extends PostApplicationTestTemplate {
     }
 
     @Test
+    @DisplayName("생성된 게시글을 수정하면 수정된 게시글을 반환한다")
     void givenCreatePost_whenUpdate_thenReturnUpdatedPost() {
         //given
         Post savedPost = postService.createPost(postRequestDto);
@@ -38,6 +41,7 @@ class PostServiceTest extends PostApplicationTestTemplate {
     }
 
     @Test
+    @DisplayName("생성된 게시글에 좋아요를 누르면 좋아요가 추가된 게시글을 반환한다")
     void givenCreatedPost_whenLiked_thenReturnPostWithLike() {
         //given
         Post savedPost = postService.createPost(postRequestDto);
@@ -51,6 +55,7 @@ class PostServiceTest extends PostApplicationTestTemplate {
     }
 
     @Test
+    @DisplayName("생성된 게시글에 좋아요를 두 번 누르면 좋아요가 하나만 추가된 게시글을 반환한다")
     void givenCreatedPost_whenLikedTwice_thenReturnPostWithOneLike() {
         //given
         Post savedPost = postService.createPost(postRequestDto);
@@ -65,6 +70,7 @@ class PostServiceTest extends PostApplicationTestTemplate {
     }
 
     @Test
+    @DisplayName("좋아요가 눌린 게시글에 좋아요를 취소하면 좋아요가 없는 게시글을 반환한다")
     void givenLikedPost_whenUnliked_thenReturnPostWithNoLike() {
         //given
         Post savedPost = postService.createPost(postRequestDto);
@@ -79,6 +85,7 @@ class PostServiceTest extends PostApplicationTestTemplate {
     }
 
     @Test
+    @DisplayName("생성된 게시글에 좋아요를 취소하면 좋아요가 없는 게시글을 유지한다")
     void givenCreatedPost_whenUnliked_thenReturnPostWithNoLike() {
         //given
         Post savedPost = postService.createPost(postRequestDto);

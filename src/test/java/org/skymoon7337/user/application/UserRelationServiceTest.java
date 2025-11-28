@@ -1,6 +1,7 @@
 package org.skymoon7337.user.application;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.skymoon7337.fake.FakeObjectFactory;
 import org.skymoon7337.user.application.dto.CreateUserRequestDto;
@@ -30,6 +31,7 @@ class UserRelationServiceTest {
     }
 
     @Test
+    @DisplayName("두 명의 유저가 생성되고 팔로우를 하면 팔로우/팔로워 수가 증가한다")
     void givenCreateTwoUser_whenFollow_thenUserFollowSaved() {
         //when
         userRelationService.follow(requestDto);
@@ -40,6 +42,7 @@ class UserRelationServiceTest {
     }
 
     @Test
+    @DisplayName("이미 팔로우한 유저를 다시 팔로우하면 예외가 발생한다")
     void givenCreateTwoUserFollowed_whenFollow_thenUserThrowError() {
         //given
         userRelationService.follow(requestDto);
@@ -49,6 +52,7 @@ class UserRelationServiceTest {
     }
 
     @Test
+    @DisplayName("자기 자신을 팔로우하면 예외가 발생한다")
     void givenCreateOneUser_whenFollowSelf_thenUserThrowError() {
         //given
         FollowUserRequestDto sameUser = new FollowUserRequestDto(user1.getId(), user1.getId());
@@ -58,6 +62,7 @@ class UserRelationServiceTest {
     }
 
     @Test
+    @DisplayName("팔로우한 유저를 언팔로우하면 팔로우/팔로워 수가 감소한다")
     void givenCreateTwoUserFollow_whenUnfollow_thenUserUnfollowSaved() {
         //given
         userRelationService.follow(requestDto);
@@ -69,12 +74,14 @@ class UserRelationServiceTest {
     }
 
     @Test
+    @DisplayName("팔로우하지 않은 유저를 언팔로우하면 예외가 발생한다")
     void givenCreateTwoUser_whenUnfollow_thenUserThrowError() {
         //when, then
         assertThrows(IllegalArgumentException.class, () -> userRelationService.unfollow(requestDto));
     }
 
     @Test
+    @DisplayName("자기 자신을 언팔로우하면 예외가 발생한다")
     void givenCreateOneUser_whenUnfollowSelf_thenUserThrowError() {
         //given
         FollowUserRequestDto sameUser = new FollowUserRequestDto(user1.getId(), user1.getId());

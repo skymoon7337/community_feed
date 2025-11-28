@@ -1,5 +1,6 @@
 package org.skymoon7337.post.application;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.skymoon7337.post.application.dto.LikeRequestDto;
 import org.skymoon7337.post.application.dto.UpdateCommentRequestDto;
@@ -10,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class CommentServiceTest extends PostApplicationTestTemplate {
 
     @Test
+    @DisplayName("댓글 생성 요청이 주어지면 댓글을 생성하고 반환한다")
     void givenCreateCommentRequestDto_whenCreateComment_thenReturnComment() {
         //when
         Comment comment = commentService.createComment(commentRequestDto);
@@ -20,6 +22,7 @@ class CommentServiceTest extends PostApplicationTestTemplate {
     }
 
     @Test
+    @DisplayName("생성된 댓글을 수정하면 수정된 댓글을 반환한다")
     void givenCreatedComment_whenUpdateComment_thenReturnUpdatedComment() {
         //given
         Comment comment = commentService.createComment(commentRequestDto);
@@ -36,6 +39,7 @@ class CommentServiceTest extends PostApplicationTestTemplate {
     }
 
     @Test
+    @DisplayName("생성된 댓글에 좋아요를 누르면 좋아요가 추가된 댓글을 반환한다")
     void givenCreatedComment_whenLikeComment_thenReturnCommentWithLike() {
         //given
         Comment comment = commentService.createComment(commentRequestDto);
@@ -49,6 +53,7 @@ class CommentServiceTest extends PostApplicationTestTemplate {
     }
 
     @Test
+    @DisplayName("좋아요가 눌린 댓글에 좋아요를 취소하면 좋아요가 없는 댓글을 반환한다")
     void givenCreatedComment_whenUnlikeComment_thenReturnCommentWithNoLike() {
         //given
         Comment comment = commentService.createComment(commentRequestDto);
