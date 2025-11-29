@@ -9,6 +9,7 @@ import org.skymoon7337.user.domain.UserInfo;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@DisplayName("게시글 테스트")
 class PostTest {
     private final UserInfo info = new UserInfo("name", "url");
     private final User user = new User(1L, info);

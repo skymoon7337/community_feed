@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@DisplayName("양의 정수 카운터 테스트")
 class PositiveIntegerCounterTest {
 
     @Test

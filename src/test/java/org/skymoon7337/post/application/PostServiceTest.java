@@ -10,6 +10,7 @@ import org.skymoon7337.post.domain.PostPublicationState;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 //Post와 Comment는 로직이 비슷해서 템플릿으로 뺌
+@DisplayName("게시글 서비스 테스트")
 class PostServiceTest extends PostApplicationTestTemplate {
 
     @Test

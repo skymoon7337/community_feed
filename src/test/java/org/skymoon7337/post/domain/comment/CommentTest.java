@@ -11,6 +11,7 @@ import org.skymoon7337.user.domain.UserInfo;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@DisplayName("댓글 테스트")
 class CommentTest {
 
     private final UserInfo info = new UserInfo("name", "url");

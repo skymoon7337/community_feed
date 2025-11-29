@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@DisplayName("유저 테스트")
 class UserTest {
 
     private final UserInfo userInfo = new UserInfo("test", "");

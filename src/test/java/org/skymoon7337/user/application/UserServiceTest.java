@@ -9,6 +9,7 @@ import org.skymoon7337.user.domain.UserInfo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@DisplayName("유저 서비스 테스트")
 class UserServiceTest {
 
     private final UserService userService = FakeObjectFactory.getUserService();

@@ -8,6 +8,7 @@ import org.skymoon7337.post.domain.comment.Comment;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@DisplayName("댓글 서비스 테스트")
 class CommentServiceTest extends PostApplicationTestTemplate {
 
     @Test

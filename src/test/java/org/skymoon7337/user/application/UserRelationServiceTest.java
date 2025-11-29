@@ -11,6 +11,7 @@ import org.skymoon7337.user.domain.User;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@DisplayName("유저 관계 서비스 테스트")
 class UserRelationServiceTest {
 
     private final UserService userService = FakeObjectFactory.getUserService();

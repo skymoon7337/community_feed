@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@DisplayName("날짜 시간 정보 테스트")
 class DatetimeInfoTest {
 
     @Test
