@@ -16,7 +16,7 @@ import org.skymoon7337.user.repository.FakeUserRelationRepository;
 import org.skymoon7337.user.repository.FakeUserRepository;
 
 
-//싱글톤 Mock 객체를 제공
+//싱글톤 Mock 객체를 제공함
 public class FakeObjectFactory {
 
     private static final UserRepository fakeUserRepository = new FakeUserRepository();
